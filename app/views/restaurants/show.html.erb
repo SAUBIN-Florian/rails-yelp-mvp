@@ -1,0 +1,20 @@
+<div class="display-one">
+  <h1><%= @restaurant.name %></h1>
+
+  <p><%= @restaurant.category %></p>
+  <p><%= @restaurant.address %> - <%= @restaurant.phone_number %></p>
+  <br>
+  <%= link_to "Post a review", new_restaurant_review_path(@restaurant) %>
+  
+  <% @restaurant.reviews.each do |review| %>
+    <ul class="reviews-ul">
+      <li>
+        Stars: <%= review.rating %> - <%= review.content %> - 
+        <%= link_to "[X]",
+          review_path(review),
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>
+      </li>
+    </ul>
+  <% end %>
+</div>
